@@ -53,6 +53,51 @@
         margin-left: 20px;
         text-align: left;
     }
+    .download_button{
+      background:#489CFF;
+      color:#fff;
+      border:none;
+      position:relative;
+      height:50px;
+      font-size:1.2em;
+      padding:0.7em;
+      cursor:pointer;
+      transition:800ms ease all;
+      outline:none;
+      text-decoration: none;
+    }
+    .download_button:hover{
+      background:#fff;
+      color:#489CFF;
+    }
+
+    .download_button:before,.download_button:after{
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #489CFF;
+      transition:400ms ease all;
+    }
+
+    .download_button:after{
+      right:inherit;
+      top:inherit;
+      left:0;
+      bottom:0;
+    }
+
+    .download_button:hover:before,.download_button:hover:after{
+      
+      transition:800ms ease all;
+    }
+
+    .DL_button {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
 
     canvas {
         width: 512px;
@@ -80,8 +125,6 @@ input {
     border: 1px solid #999;
     border-radius: 2px;
 }
-
-
     </style>
   </head>
 
@@ -99,7 +142,6 @@ input {
         <div class="character_Info">
             <form name="selectForm" id="selectForm"> 
                 <h3> character</h3>
-                <p>
                     <select name="character_class" onChange="select_character(this.options[this.selectedIndex].value);"> 
         <option value="NONE">캐릭터를 선택하세요</option> 
         <option value="STRIKER">이세하</option> 
@@ -126,7 +168,6 @@ input {
     </p>
 
     <h3>Costume</h3>
-    <p> 
         <select name="none_costume" id="none_costume" style="display:none ;" onChange="select_costume(this.options[this.selectedIndex].value);">
     </select>
     <select name="striker_costume" id="striker_costume" style="display:none ;" onChange="select_costume(this.options[this.selectedIndex].value);"> 
@@ -1732,6 +1773,9 @@ input {
     <br>
     <input type="text" id="characterTYPE" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"><br>
 </div>
+
+<div class="DL_button">
+<a class="download_button" download="closers.png" href="" onclick="download_img(this);">Download</a> </div>
 </div>
 
 
@@ -3705,5 +3749,14 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawImage();
 }
+
+ download_img = function(el) {
+  
+  var imageURI = canvas.toDataURL("image/png");
+  el.href = imageURI;
+};
+
+
 </script>
+
 </html>
