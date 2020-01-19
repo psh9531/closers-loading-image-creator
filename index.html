@@ -110,16 +110,22 @@
       select {
         width: 220px;
         padding: 4px;
-        border: 1px solid #999;
+        border: 0;
+        border-bottom: 2px solid #999;
         border-radius: 2px;
        -webkit-appearance: none;
        -moz-appearance: none;
        appearance: none;
+       outline: none;
 }
 select::-ms-expand {
     display: none;
 }
 
+select:hover {
+      border-bottom: 2px solid #0075ff;
+     }
+     
 input {
     width: 220px;
     padding: 4px;
