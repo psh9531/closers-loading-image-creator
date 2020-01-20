@@ -432,7 +432,7 @@ function categoryChange(e) {
         "서머 아일랜드 [A]", "서머 아일랜드 [B]", "서머 아일랜드 [C]", "서머 아일랜드 [혼합형]",
         //"롤리팝 트위스트 [A]", "롤리팝 트위스트 [B]", "롤리팝 트위스트 [C]", "롤리팝 트위스트 [혼합형]", 
         "원더랜드", "원더랜드 [TYPE 2]",
-        "임페리얼 가드 [A]", "임페리얼 가드 [B]", "임페리얼 가드 [C]", "임페리얼 가드 [혼합형]",
+        //"임페리얼 가드 [A]", "임페리얼 가드 [B]", "임페리얼 가드 [C]", "임페리얼 가드 [혼합형]",
         "서빙 마스터 [A]", "서빙 마스터 [B]", "서빙 마스터 [C]", "서빙 마스터 [혼합형]",
         //"신서울 요호 [A]", "신서울 요호 [B]", "신서울 요호 [C]", "신서울 요호 [혼합형]", 
         //"어반 싸울아비 [A]", "어반 싸울아비 [B]", "어반 싸울아비 [C]", "어반 싸울아비 [혼합형]",
@@ -868,6 +868,7 @@ function categoryChange(e) {
         "드래고니안 각성": "_R6",
         "기본 일러스트": "_N1",
         "정식": "_N2",
+	"해결사": "_N2",
         "특수": "_N3",
         "태스크포스": "_N4",
         "4월의 고양이": "_APRIL",
@@ -992,8 +993,8 @@ function categoryChange(e) {
                 value += "_C";
                 break;
             case "D":
-                    value += "_D";
-                    break;
+                value += "_D";
+                break;
             case "혼합형":
                 value += "_MIX";
                 break;
@@ -1021,10 +1022,7 @@ function drawImage() {
 
 function select_costume(character_class){
     var strArray = character_class.split('_')
-    if (strArray[0] == '')
-        img.src = "image/COMMON/" + character_class + ".png"
-    else
-        img.src = "image/" + strArray[0] + "/" + character_class + ".png"
+    img.src = "image/" + strArray[0] + "/" + character_class + ".png"
     img.onload = function() {
         clearCanvas();
         ctx.drawImage(img_BG, 0, 0);
