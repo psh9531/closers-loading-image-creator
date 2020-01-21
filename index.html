@@ -3,9 +3,17 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>클로저스 로딩 일러스트 생성기</title>
-    <link ref="stylesheet" ref="stylesheet" type="text/css"/>
+    <title>클로저스 로딩 일러스트 생성기</title>    
+    <link rel="stylesheet" href="./css/reset.css"/>
     <style>
+    @font-face {
+      font-family: 'NanumBarunGothic';
+      src: local('NanumBarunGothic'),
+            url(./NanumBarunGothic.woff) format('woff'),
+            url(./NanumBarunGothic.ttf) format('truetype');
+      font-style: normal;
+      font-weight: normal;
+    }
     .nav {
       height: 60px;
       padding: 15px;
@@ -247,23 +255,23 @@ input {
 <br>
 
     <div class = "closer_Info">
-    <input type="text" class="closer_field" id="characterID" placeholder="name" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
-      <label for="name" class="closer_label">CLOSER NAME</label>
+        <label for="name" class="closer_label">CLOSER NAME</label>
+        <input type="text" class="closer_field" id="characterID" placeholder="name" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
   </div>
 
      <div class = "closer_Info">
-    <input type="text" class="closer_field" id="characterLEVEL" placeholder="name" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
-    <label for="name" class="closer_label">CLOSER LEVEL</label>
+        <label for="name" class="closer_label">CLOSER LEVEL</label>
+        <input type="text" class="closer_field" id="characterLEVEL" placeholder="name" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
     </div>
 
      <div class = "closer_Info">    
-    <input type="text" class="closer_field" id="characterTYPE" placeholder="name" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
-    <label for="name" class="closer_label">CLOSER RANK</label>
+        <label for="name" class="closer_label">CLOSER RANK</label>
+        <input type="text" class="closer_field" id="characterTYPE" placeholder="name" onkeypress="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
 </div>
 </div>
 
 <div class="DL_button">
-<a class="download_button" download="closers.png" href="" onclick="download_img(this);">Download</a> </div>
+<a class="download_button" download="closers.png" href="" onclick="download_img(this, event);">Download</a> </div>
 </div>
 
 
@@ -1095,11 +1103,19 @@ function clearCanvas() {
     drawImage();
 }
 
- download_img = function(el) {
-  
-  var imageURI = canvas.toDataURL("image/png");
-  el.href = imageURI;
-};
+function download_img(el, event) {
+    // for IE
+    if (canvas.msToBlob) {
+        // 파일창 켜짐 방지
+        event.preventDefault()
+        let imageBlob = canvas.msToBlob()
+        let downloadName = 'closers.png'
+        window.navigator.msSaveBlob(imageBlob, downloadName)
+    } else {
+        let imageURI = canvas.toDataURL("image/png");
+        el.href = imageURI;
+    }
+}
 
 
 </script>
