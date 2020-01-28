@@ -1,0 +1,196 @@
+@font-face {
+  font-family: 'NanumBarunGothic';
+  src: local('NanumBarunGothic'),
+        url(../NanumBarunGothic.woff) format('woff'),
+        url(../NanumBarunGothic.ttf) format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+.nav {
+  height: 60px;
+  padding: 15px;
+  border-bottom: 2px solid black;
+  align-items: center;
+  background: rgba(0,0,0,.03);
+}
+.mainTitle {
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+}
+.subTitle {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.information_Area {
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+}
+
+ .user_Info {
+    margin-left: 50px;
+    margin-right: 10px;
+    position: relative;
+
+    width: 100%;
+}
+
+.patch_Info {
+    margin-left: 10px;
+    margin-right: 50px;
+    position: relative;
+    width: 100%;
+    border: 1px solid black;
+    background: rgba(0,0,0,.03);
+}
+.text_Area {
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: left;
+    font-size: 12px;
+}
+.download_button{
+  background:#489CFF;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:1.2em;
+  padding:0.7em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  text-decoration: none;
+}
+.download_button:hover{
+  background:#fff;
+  color:#489CFF;
+}
+
+.download_button:before,.download_button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #489CFF;
+  transition:400ms ease all;
+}
+
+.download_button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+
+.download_button:hover:before,.download_button:hover:after{
+  
+  transition:800ms ease all;
+}
+
+.DL_button {
+    margin-top: 2rem;
+    margin-bottom: 50px;
+}
+
+body {
+font-family: "NanumBarunGothic";
+}
+canvas {
+    width: 512px;
+    height: 173px;
+    border: 1px solid black;
+  }
+  select {
+    width: 220px;
+    padding: 4px;
+    border: 0;
+    border-bottom: 2px solid #999;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+}
+select::-ms-expand {
+display: none;
+}
+
+select:hover {
+border-bottom: 2px solid #0075ff;
+}
+ 
+input {
+width: 220px;
+padding: 4px;
+margin-bottom: 20px;
+border: 1px solid #999;
+border-radius: 2px;
+}
+
+
+.closer_Info {
+display:inline-block;
+position: relative;
+padding: 15px 0 0;
+width: 30%;
+}
+
+.closer_field {
+text-align: left;
+width: 100%;
+border: 0;
+border-bottom: 2px solid #9b9b9b;
+outline: 0;
+font-size: 1rem;
+color: #000;
+padding: 7px 0;
+background: transparent;
+transition: border-color 0.2s;
+}
+.closer_field::placeholder {
+color: transparent;
+}
+.closer_field:placeholder-shown ~ .closer_label {
+font-size: 1rem;
+cursor: text;
+top: 20px;
+}
+
+.closer_label {
+position: absolute;
+top: 0;
+display: block;
+transition: 0.2s;
+font-size: 1rem;
+color: #9b9b9b;
+}
+
+.closer_field:focus {
+padding-bottom: 6px;
+font-weight: 700;
+border-width: 3px;
+border-image: linear-gradient(to right, #0075ff, #c2deff);
+border-image-slice: 1;
+}
+.closer_field:focus ~ .closer_label {
+position: absolute;
+top: -5px;
+display: block;
+transition: 0.2s;
+font-size: 1rem;
+color: #489CFF;
+font-weight: 700;
+}
+
+.closer_field:required, .closer_field:invalid {
+box-shadow: none;
+}
