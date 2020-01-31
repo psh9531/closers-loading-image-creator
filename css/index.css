@@ -7,9 +7,11 @@
   font-weight: normal;
 }
 .nav {
-  height: 60px;
+  width: 100%;
+  height: 5.5rem;
   padding: 15px;
   border-bottom: 2px solid black;
+
   align-items: center;
   background: rgba(0,0,0,.03);
 }
@@ -19,26 +21,41 @@
     font-weight: bold;
     align-items: center;
     text-align: center;
+    margin-bottom: 1.5rem;
 }
 .subTitle {
     text-align: right;
     margin-bottom: 10px;
+    margin-right: 5rem;
+    padding: 10px;
+    width:100%;
+}
+
+.explanation {
+  text-align: left;
+  margin-left: 5rem;
+  width: 95%;
 }
 
 .information_Area {
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: flex;
+    margin-top: 30px;
+    width: 512px;
+
+ //text-align: center;
+   //display: flex;
 }
 
- .user_Info {
-    margin-left: 50px;
-    margin-right: 10px;
-    position: relative;
+.content_Area {
+    display: flex;
 
-    width: 100%;
+}
+ .character_Area {
+margin-top: 2rem;
+}
+
+.null_Area {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .patch_Info {
@@ -97,8 +114,14 @@
 }
 
 .DL_button {
-    margin-top: 2rem;
-    margin-bottom: 50px;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.character_Info {
+  margin-top: 2rem;
+  text-align: left;
 }
 
 body {
@@ -111,6 +134,7 @@ canvas {
   }
   select {
     width: 220px;
+    //height: 40px;
     padding: 4px;
     border: 0;
     border-bottom: 2px solid #999;
@@ -120,6 +144,7 @@ canvas {
     appearance: none;
     outline: none;
 }
+
 select::-ms-expand {
 display: none;
 }
@@ -136,14 +161,33 @@ border: 1px solid #999;
 border-radius: 2px;
 }
 
+dt, dl {
+  //margin-top: 1.5rem;
+}
+
+td {
+  width:100px;
+  height:50px;
+}
 
 .closer_Info {
 display:inline-block;
 position: relative;
 padding: 15px 0 0;
-width: 30%;
+width: 512px;
+margin-top: 2rem;
+margin-left: 2px;
+margin-right: 2px;
 }
 
+
+.character_Area_Detail {
+margin-left: 2rem;
+}
+
+.closer_Area {
+  display: flex;
+}
 .closer_field {
 text-align: left;
 width: 100%;
