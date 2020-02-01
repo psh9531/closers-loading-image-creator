@@ -14,6 +14,9 @@
 <!-- 구글 애널리틱스 시작(웹페이지 접속자 통계 횟수통계) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156922276-1"></script>
 <script>
+    first_Loop();
+</script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -110,31 +113,44 @@
                 </table>
             </div> 
 
-            <div class="closer_Area">
-                <dl class = "closer_Info">
-                  <input type="input" class="closer_field" id="characterID" placeholder=" " onkeydown="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
-                  <label for="characterID" class="closer_label">CLOSER NAME</label>
-              </dl>
+            <div class="loading_Area">
+                <dl class="loading_State">
+                 <label>
+                     <strong>Loading State</strong>
+                     <input type="checkbox" id="loading_Active" name="loading_Active" class="loading_Active" onclick="slide_Disable(), updateCanvas();"/>
+                 </label>
+             </dl>
 
-              <dl class = "closer_Info">
-                  <input type="input" class="closer_field" id="characterLEVEL" placeholder=" " onkeydown="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
-                  <label for="characterLEVEL" class="closer_label">CLOSER LEVEL</label>
-              </dl>
+             <dl class="loading_Slider">
+                <input type="range" name="range" min="0" max="100" value="0" class="slider" id="characterLOADING" style="display:none"> 
+            </dl>
 
-              <dl class = "closer_Info">
-                  <input type="input" class="closer_field" id="characterTYPE" placeholder=" " onkeydown="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
-                  <label for="characterTYPE" class="closer_label">CLOSER RANK</label>
-              </dl>
-          </div>
-
-          <div class="DL_button">
-            <a class="download_button" download="closers.png" href="" onclick="download_img(this, event);">Download</a> </div>
         </div>
+        <div class="closer_Area">
+            <dl class = "closer_Info">
+              <input type="input" class="closer_field" id="characterID" placeholder=" " onkeydown="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
+              <label for="characterID" class="closer_label">CLOSER NAME</label>
+          </dl>
 
-        <div class="null_Area">
+          <dl class = "closer_Info">
+              <input type="input" class="closer_field" id="characterLEVEL" placeholder=" " onkeydown="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
+              <label for="characterLEVEL" class="closer_label">CLOSER LEVEL</label>
+          </dl>
 
-         </div>
+          <dl class = "closer_Info">
+              <input type="input" class="closer_field" id="characterTYPE" placeholder=" " onkeydown="inputText(event.keyCode);" onkeyup="inputBackSpace(event.keyCode);"required/>
+              <label for="characterTYPE" class="closer_label">CLOSER RANK</label>
+          </dl>
+      </div>
+
+      <div class="DL_button">
+        <a class="download_button" download="closers.png" href="" onclick="download_img(this, event);">Download</a> </div>
     </div>
+
+    <div class="null_Area">
+
+    </div>
+</div>
 </div>
 
 <!-- 패치정보 시작 -->
@@ -173,7 +189,7 @@
 }
 
 var canvas, ctx
-var characterID, characterLEVEL, characterTYPE
+var characterID, characterLEVEL, characterTYPE, characterLOADING
 var isFill = true;
 
 function Init() {
@@ -183,6 +199,7 @@ function Init() {
   characterID = document.getElementById('characterID');
   characterLEVEL = document.getElementById('characterLEVEL');
   characterTYPE = document.getElementById('characterTYPE');
+  characterLOADING = document.getElementById('characterLOADING');
 //characterID.focus();
 //characterLEVEL.focus();
 //characterTYPE.focus();
@@ -365,21 +382,38 @@ for(var frame_i = 0, frame_l = frame_Options.length; frame_i < frame_l; frame_i+
 var img = new Image();
 var img_BG = new Image();
 var img_Frame = new Image();
+var img_Trans = new Image();
+var Trans_X = "1";
 img_BG.src = "image/COMMON/BG.png";
+
+img_BG.onload = function() {
+  clearCanvas();
+  drawImage();
+  drawText();
+}
+img_Trans.onload = function() {
+  clearCanvas();
+  drawImage();
+  drawText();
+}
 
 function drawImage() {
     ctx.drawImage(img_BG,0,0)
     ctx.drawImage(img,0,0)
-    ctx.drawImage(img_Frame,0,0)
+    if(Trans_X>0) {
+      ctx.drawImage(img_Trans, Trans_X, 0)
+  }
+  else {
+    ctx.drawImage(img_Trans, 0, 0)
+}
+ctx.drawImage(img_Frame,0,0)
 }
 
 function select_frame(frame_Value) {
   img_Frame.src = "image/FRAME/" + frame_Value + ".png"
   img_Frame.onload = function() {
       clearCanvas();
-      ctx.drawImage(img_BG, 0, 0);
-      ctx.drawImage(img, 0, 0);
-      ctx.drawImage(img_Frame,0,0);
+      drawImage();
       drawText();
   }
 }
@@ -389,19 +423,11 @@ function select_costume(character_class){
     img.src = "image/" + strArray[0] + "/" + character_class + ".png"
     img.onload = function() {
         clearCanvas();
-        ctx.drawImage(img_BG, 0, 0);
-        ctx.drawImage(img, 0, 0);
-        ctx.drawImage(img_Frame,0,0);
+        drawImage();
         drawText();
     }
-    img_BG.onload = function() {
-      clearCanvas();
-      ctx.drawImage(img_BG, 0, 0);
-      ctx.drawImage(img, 0, 0);
-      ctx.drawImage(img_Frame,0,0);
-      drawText();
-  }
 }
+
 function drawText() {    
     ctx.font="18px NanumBarunGothic";
     ctx.lineWidth = 1;
@@ -411,25 +437,37 @@ function drawText() {
     ctx.shadowColor = "black";
     ctx.fillStyle = "rgb(255,255,255)";
 
-    ctx.strokeText(document.getElementById("characterID").value, canvas.width-9, 27);
-    ctx.fillText(document.getElementById("characterID").value, canvas.width-9, 27);
+    ctx.strokeText(document.getElementById("characterID").value, canvas.width-9, 24);
+    ctx.fillText(document.getElementById("characterID").value, canvas.width-9, 24);
 
     ctx.strokeText(document.getElementById("characterTYPE").value, canvas.width-9, 85);
     ctx.fillText(document.getElementById("characterTYPE").value, canvas.width-9, 85);
 
+    ctx.fillStyle = "rgb(255,220,0)";
+
     var check=document.getElementById("characterLEVEL").value
     if(check > 0) {
         ctx.strokeText("LV " + document.getElementById("characterLEVEL").value, canvas.width-10, 56);
-        ctx.fillStyle = "rgb(255,220,0)";
+
         ctx.fillText("LV " + document.getElementById("characterLEVEL").value, canvas.width-10, 56);
+    }
+    if(loading_Active.checked) {
+        ctx.font="23px NanumBarunGothic";
+        ctx.strokeText(characterLOADING.value + " %",canvas.width-12, 153);
+        ctx.fillText(characterLOADING.value + " %",canvas.width-12, 153);
+    }
+    else
+    {
+        ctx.strokeText(" ",canvas.width-12, 153);
+        ctx.fillText(" ",canvas.width-12, 153);
     }
 }
 
 function drawText_realtime() {
     characterID.oninput = function() {
         ctx.fillStyle = "rgb(255,255,255)";
-        ctx.strokeText(document.getElementById("characterID").value, canvas.width-9, 27);
-        ctx.fillText(document.getElementById("characterID").value, canvas.width-9, 27);
+        ctx.strokeText(document.getElementById("characterID").value, canvas.width-9, 24);
+        ctx.fillText(document.getElementById("characterID").value, canvas.width-9, 24);
         clearCanvas();
         drawImage();
         drawText();};
@@ -449,7 +487,25 @@ function drawText_realtime() {
                 clearCanvas();
                 drawImage();
                 drawText();};
+
+                characterLOADING.oninput = function() {
+                    Trans_X = this.value*"5.12";
+                    if(loading_Active.checked) {
+                        ctx.font="23px NanumBarunGothic";
+                        ctx.strokeText(characterLOADING.value + " %",canvas.width-12, 153);
+                        ctx.fillText(characterLOADING.value + " %",canvas.width-12, 153);
+                        clearCanvas();
+                        drawImage();
+                        drawText();
+                    }
+                    else
+                    {
+                        ctx.strokeText(" ",canvas.width-12, 153);
+                        ctx.fillText(" ",canvas.width-12, 153);
+                    }
+                }
             }
+
             function updateCanvas() {
                 drawText_realtime();
                 clearCanvas();
@@ -474,7 +530,20 @@ function drawText_realtime() {
         el.href = imageURI;
     }
 }
+function slide_Disable() {
+    Trans_X = this.value*"5.12";
 
+    if(loading_Active.checked) {            
+        characterLOADING.style.display="block";
+        img_Trans.src = "image/COMMON/TRANSPARENCY.png";
+        updateCanvas();
+    }
+    else
+    {
+        characterLOADING.style.display="none";
+        img_Trans.src = "image/COMMON/NULL.png";
+    }
+}
 
 </script>
 
