@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 100% - top nav height - bottom patch_info height + 1(border width) */
+  /* 100% - top nav height - bottom patch_info height(+border width) */
   height: calc(100% - 5.5rem - 187px);
 }
 .character_Area {
