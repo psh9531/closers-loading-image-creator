@@ -36,6 +36,7 @@
 <!-- frame_options -->
 <script src="./javascript/frame_options.js"></script>
 
+<link rel="stylesheet" type="text/css" href="./css/select_css.css">
 </head>
 
 <body>
@@ -70,7 +71,20 @@
                         <strong> Character </strong> 
                     </td>
                     <td class="character_Area_Detail">
-                        <select name="character_class" onChange="categoryChange(this)"> 
+                        <div class="custom-select-wrapper">
+                            <div class="custom-select">
+                                <div class="custom-select__trigger"><span>캐릭터를 선택하세요</span>
+                                    <div class="arrow"></div>
+                                </div>
+                                <div class="custom-options">
+                                    <span class="custom-option selected" data-value="STRIKER">이세하</span>
+                                    <span class="custom-option" data-value="CASTER">이슬비</span>
+                                    <span class="custom-option" data-value="RANGER">서유리</span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript" src="./javascript/select_js.js"></script>
+                        <!-- <select name="character_class" onChange="categoryChange(this)"> 
                             <option value="NONE">캐릭터를 선택하세요</option>
                             <option value="STRIKER">이세하</option> 
                             <option value="CASTER">이슬비</option> 
@@ -94,7 +108,7 @@
                             <option value="REAPER">미래</option> 
                             <? 시궁쥐 캐릭터 ?>
                             <option value="ARMBAND">일러스트 완장</option>
-                            <? 기타 ?></select>
+                            <? 기타 ?></select> -->
                         </td>
                     </tr>
                     <tr>
